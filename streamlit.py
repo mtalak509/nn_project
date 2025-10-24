@@ -67,7 +67,9 @@ try:
 
     if image is not None:
         image = Image.open(image)
-        st.image(image, caption="Загруженное изображение", use_container_width=True)
+        col1, col2, col3 = st.columns([1, 2, 1])  # Центрирование
+        with col2:
+            st.image(image, caption="Загруженное изображение", use_container_width=True)
     else:
         st.info("Файл пока не загружен.")
 
@@ -84,7 +86,7 @@ try:
         'valid_accuracy': checkpoint['valid_acc']
     })
     
-    st.subheader("📈 ")
+    st.subheader("📈 Метрики accuracy")
     st.line_chart(acc_df)
 
 except Exception as e:
